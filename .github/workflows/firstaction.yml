@@ -32,9 +32,20 @@ jobs:
         run: echo Hello, world!
         
       - name: Call name from env 
-        run: echo Hello , $name
+        run: |
+          echo Hello , $name
+          echo Actor: , ${{ github.actor }}
+          echo Committed By: , ${{ github.event.commits[0].author.name }}
         id: Test
         
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - env: 
+          GITHUB_CONTEXT : ${{ toJson(github) }}
+        run: echo "GITHUB_CONTEXT"
+    
+      
   pull_request_only:
     if: github.event_name == 'pull_request'
     needs: [build]
