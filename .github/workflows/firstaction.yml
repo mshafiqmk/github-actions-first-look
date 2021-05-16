@@ -35,7 +35,7 @@ jobs:
       - name: deploy 
         uses: demurgos/ga-deploy-git@v1
         with:
-          access_token : ${{ secrets.ACCESS_TOKEN }}
+          accessToken: ${{ secrets.ACCESS_TOKEN }}
           srcDir: build
           destBranch: gh-pages
         
